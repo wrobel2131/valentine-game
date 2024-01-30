@@ -1,0 +1,47 @@
+.boy {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 630px;
+  //   background: url(/assets/boy-walking-up-2.png);
+  width: calc(2000px / 4);
+  //   -webkit-box-reflect: below 1px linear-gradient(transparent 90%, #0004);
+  //   animation: walkingBoy 1s steps(4) infinite;
+  scale: 0.2;
+}
+
+.up {
+  background: url(/assets/boy-walking-up-2.png);
+}
+
+.down {
+  background: url(/assets/boy-walking-down-2.png);
+}
+
+.left {
+  background: url(/assets/boy-walking-left-2.png);
+}
+
+.right {
+  background: url(/assets/boy-walking-right-2.png);
+}
+
+.moving {
+  animation: walkingBoy 0.7s steps(4) infinite;
+}
+
+.not-moving {
+  animation: none;
+}
+
+@keyframes walkingBoy {
+  from {
+    background-position: 0px;
+    // left: 0;
+  }
+  to {
+    background-position: 2000px;
+    // left: 50%;
+  }
+}
