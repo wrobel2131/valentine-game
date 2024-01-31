@@ -12,36 +12,34 @@
 }
 
 .up {
-  background: url(/assets/boy-walking-up-2.png);
+  background: url(/assets/boy-walking-up.png);
 }
 
 .down {
-  background: url(/assets/boy-walking-down-2.png);
+  background: url(/assets/boy-walking-down.png);
 }
 
 .left {
-  background: url(/assets/boy-walking-left-2.png);
+  background: url(/assets/boy-walking-left.png);
 }
 
 .right {
-  background: url(/assets/boy-walking-right-2.png);
+  background: url(/assets/boy-walking-right.png);
 }
 
 .moving {
-  animation: walkingBoy 0.7s steps(4) infinite;
+  animation: walking 0.7s steps(4) infinite;
 }
 
 .not-moving {
   animation: none;
 }
 
-@keyframes walkingBoy {
+@keyframes walking {
   from {
     background-position: 0px;
-    // left: 0;
   }
   to {
     background-position: 2000px;
-    // left: 50%;
   }
 }
