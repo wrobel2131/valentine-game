@@ -1,0 +1,8 @@
+<!-- @if(characterService.characterPosition$ | async; as position) { -->
+<!-- <p>Position 'top': {{ secondCharacterPositionValue.top }}</p>
+<p>Position 'left': {{ secondCharacterPositionValue.left }}</p> -->
+<p>Distance: {{ distance }}</p>
+<!-- } -->
+@if(distance < 60) {
+{{ action() }}
+}

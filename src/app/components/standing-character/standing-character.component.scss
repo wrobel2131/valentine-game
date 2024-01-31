@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  width: 500px;
+  height: 640px;
+  border: 20px solid red;
+  transform: scale(0.15);
+  transform-origin: top left;
+  position: absolute;
+  left: 1400px;
+  top: 520px;
+  background-color: antiquewhite;
+}
+
+p {
+  font-size: 100px;
+  color: red;
+}
+
+h1 {
+  font-size: 200px;
+}

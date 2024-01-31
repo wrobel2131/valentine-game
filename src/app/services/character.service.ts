@@ -23,7 +23,7 @@ export class CharacterService {
     this.isMovingSubject.asObservable();
 
   private characterPositionSubject: BehaviorSubject<CharacterPosition> =
-    new BehaviorSubject<CharacterPosition>({ top: '350px', left: '0px' });
+    new BehaviorSubject<CharacterPosition>({ top: '300px', left: '50px' });
   public readonly characterPosition$: Observable<CharacterPosition> =
     this.characterPositionSubject.asObservable();
 
@@ -74,6 +74,10 @@ export class CharacterService {
       .includes(key);
   }
 
+  public parseToNumber(positionPx: NumberInPx): number {
+    return parseInt(positionPx, 10);
+  }
+
   private moveCharacterUp(step: number): void {
     this.characterPosition$.pipe(take(1)).subscribe({
       next: (currentPosition) => {
@@ -118,9 +122,6 @@ export class CharacterService {
     });
   }
 
-  private parseToNumber(positionPx: NumberInPx): number {
-    return parseInt(positionPx, 10);
-  }
 
   private setCharacterPosition(position: CharacterPosition): void {
     this.characterPositionSubject.next(position);
