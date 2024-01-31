@@ -13,7 +13,7 @@ import { CharacterPosition, NumberInPx } from '../models/position';
 })
 export class CharacterService {
   private directionClassSubject: BehaviorSubject<DirectionClass> =
-    new BehaviorSubject<DirectionClass>(DirectionsClassEnum.RIGHT);
+    new BehaviorSubject<DirectionClass>(DirectionsClassEnum.DOWN);
   public readonly directionClass$: Observable<DirectionClass> =
     this.directionClassSubject.asObservable();
 
@@ -23,7 +23,7 @@ export class CharacterService {
     this.isMovingSubject.asObservable();
 
   private characterPositionSubject: BehaviorSubject<CharacterPosition> =
-    new BehaviorSubject<CharacterPosition>({ top: '300px', left: '50px' });
+    new BehaviorSubject<CharacterPosition>({ top: '600px', left: '670px' });
   public readonly characterPosition$: Observable<CharacterPosition> =
     this.characterPositionSubject.asObservable();
 
@@ -74,7 +74,25 @@ export class CharacterService {
       .includes(key);
   }
 
-  public parseToNumber(positionPx: NumberInPx): number {
+  calculateDistanceBetweenCharacters(
+    firstCharacterPosition: CharacterPosition,
+    secondCharacterPosition: CharacterPosition
+  ): number {
+    return Math.sqrt(
+      Math.pow(
+        this.parseToNumber(firstCharacterPosition.left) -
+          this.parseToNumber(secondCharacterPosition.left),
+        2
+      ) +
+        Math.pow(
+          this.parseToNumber(firstCharacterPosition.top) -
+            this.parseToNumber(secondCharacterPosition.top),
+          2
+        )
+    );
+  }
+
+  private parseToNumber(positionPx: NumberInPx): number {
     return parseInt(positionPx, 10);
   }
 
@@ -121,7 +139,6 @@ export class CharacterService {
       },
     });
   }
-
 
   private setCharacterPosition(position: CharacterPosition): void {
     this.characterPositionSubject.next(position);

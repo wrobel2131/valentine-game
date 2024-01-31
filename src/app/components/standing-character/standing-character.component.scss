@@ -1,21 +1,36 @@
 :host {
   display: block;
-  width: 500px;
-  height: 640px;
-  border: 20px solid red;
-  transform: scale(0.15);
-  transform-origin: top left;
   position: absolute;
-  left: 1400px;
-  top: 520px;
-  background-color: antiquewhite;
+
+  width: 86px;
+  height: 120px;
+  background: url("/assets/girl.png");
+  scale: 0.75;
+  transform-origin: top left;
+  animation: jumpAnimation 1s ease-in-out infinite;
 }
 
-p {
-  font-size: 100px;
-  color: red;
+@keyframes jumpAnimation {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0); /* Initial and final position */
+  }
+  40% {
+    transform: translateY(-20px); /* Jump up */
+  }
+  60% {
+    transform: translateY(-10px); /* Jump down slightly */
+  }
 }
 
-h1 {
-  font-size: 200px;
-}
+// p {
+//   font-size: 100px;
+//   color: red;
+// }
+
+// h1 {
+//   font-size: 200px;
+// }

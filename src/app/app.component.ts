@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { EnvelopeComponent } from './components/envelope/envelope.component';
 import { WalkingCharacterComponent } from './components/walking-character/walking-character.component';
 import { StandingCharacterComponent } from './components/standing-character/standing-character.component';
+import { InstructionComponent } from './components/instruction/instruction.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ import { StandingCharacterComponent } from './components/standing-character/stan
     RouterOutlet,
     EnvelopeComponent,
     WalkingCharacterComponent,
-    StandingCharacterComponent
+    StandingCharacterComponent,
+    InstructionComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
