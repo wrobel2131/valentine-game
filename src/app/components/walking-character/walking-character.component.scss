@@ -6,7 +6,8 @@
   height: 630px;
   width: calc(2000px / 4);
   // -webkit-box-reflect: below 1px linear-gradient(transparent 90%, #0004);
-  scale: 0.2;
+  transform: scale(0.2);
+  transform-origin: top left;
   &.up {
     background: url(/assets/boy-walking-up.png);
   }
