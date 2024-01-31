@@ -1,19 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
-
-export enum DirectionsEnum {
-  UP = 'ArrowUp',
-  DOWN = 'ArrowDown',
-  LEFT = 'ArrowLeft',
-  RIGHT = 'ArrowRight',
-}
-
-// export type Direction = keyof typeof DirectionsEnum;
-export type Direction =
-  | DirectionsEnum.UP
-  | DirectionsEnum.DOWN
-  | DirectionsEnum.LEFT
-  | DirectionsEnum.RIGHT;
+import { Component, HostListener, OnInit } from '@angular/core';
+import {
+  Direction,
+  DirectionClass,
+  DirectionsEnum,
+} from '../../models/directions';
+import { Subscription } from 'rxjs';
+import { CharacterPosition } from '../../models/position';
+import { CharacterService } from '../../services/character.service';
 
 @Component({
   selector: 'app-walking-character',
@@ -22,94 +16,77 @@ export type Direction =
   templateUrl: './walking-character.component.html',
   styleUrl: './walking-character.component.scss',
 })
-export class WalkingCharacterComponent {
+export class WalkingCharacterComponent implements OnInit {
+  directionClassValue!: DirectionClass;
+  directionClassSubscription!: Subscription;
+
+  isMovingValue!: boolean;
+  isMovingSubscription!: Subscription;
+
+  characterPositionValue!: CharacterPosition;
+  characterPositionSubscription!: Subscription;
+
+  private intervalId: any;
+  private timeoutId: any;
+
+  constructor(private characterService: CharacterService) {}
+
+  ngOnInit(): void {
+    this.directionClassSubscription =
+      this.characterService.directionClass$.subscribe(
+        (directionClass) => (this.directionClassValue = directionClass)
+      );
+    this.isMovingSubscription = this.characterService.isMoving$.subscribe(
+      (isMoving) => (this.isMovingValue = isMoving)
+    );
+    this.characterPositionSubscription =
+      this.characterService.characterPosition$.subscribe(
+        (characterPosition) => (this.characterPositionValue = characterPosition)
+      );
+  }
+
   @HostListener('document:keydown', ['$event'])
   handleKeyDownEvent(event: KeyboardEvent) {
-    if (this.isValidDirection(event.key as Direction)) {
-      this.directionClass = this.getDirectionClass(event.key as Direction);
+    const keyboardKey = event.key;
+
+    if (this.isKeyboardKeyValid(keyboardKey)) {
       if (!this.intervalId) {
         this.intervalId = setInterval(() => {
-          this.isMoving = true;
-          console.log('check');
-          this.moveInDirection(event.key as Direction);
-        }, this.delayTime);
+          this.setDirectionFromKeyboardKey(keyboardKey);
+          this.setIsMoving(true);
+          this.move(keyboardKey);
+        }, 0);
       }
     }
   }
 
   @HostListener('document:keyup', ['$event'])
   handleKeyUpEvent(event: KeyboardEvent) {
-    if (this.isValidDirection(event.key as Direction)) {
-      this.directionClass = this.getDirectionClass(event.key as Direction);
-      if (this.intervalId) {
-        clearInterval(this.intervalId);
-        this.intervalId = null;
-        this.isMoving = false;
-      }
+    const keyboardKey = event.key;
+
+    if (this.isKeyboardKeyValid(keyboardKey)) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+      this.setDirectionFromKeyboardKey(keyboardKey);
+      this.setIsMoving(false);
     }
   }
 
-  private intervalId: any;
-  private delayTimerId: any;
-  private delayTime: number = 0;
-  directionClass: string = 'up';
-  isMoving = false;
-  characterStyle: { [key: string]: string } = {
-    top: '0px',
-    left: '0px',
-  };
-
-  moveInDirection(keyPressed: Direction): void {
-    const step = 1;
-
-    switch (keyPressed) {
-      case DirectionsEnum.UP:
-        this.characterStyle['top'] = `${
-          parseInt(this.characterStyle['top'], 10) - step
-        }px`;
-        break;
-      case DirectionsEnum.DOWN:
-        this.characterStyle['top'] = `${
-          parseInt(this.characterStyle['top'], 10) + step
-        }px`;
-        break;
-      case DirectionsEnum.LEFT:
-        this.characterStyle['left'] = `${
-          parseInt(this.characterStyle['left'], 10) - step
-        }px`;
-        break;
-      case DirectionsEnum.RIGHT:
-        this.characterStyle['left'] = `${
-          parseInt(this.characterStyle['left'], 10) + step
-        }px`;
-        break;
-    }
+  move(key: string): void {
+    this.characterService.moveCharacter(key as Direction);
   }
 
-  isValidDirection(keyPressed: Direction): boolean {
-    return Object.values(DirectionsEnum).includes(keyPressed);
+  isKeyboardKeyValid(key: string): boolean {
+    return this.characterService.isKeyboardKeyAsDirectionValid(
+      key as Direction
+    );
   }
 
-  getDirectionClass(direction: Direction) {
-    // console.log(direction);
-    switch (direction) {
-      case DirectionsEnum.UP:
-        // console.log(direction);
-        return 'up';
-      case DirectionsEnum.DOWN:
-        // console.log(direction);
+  setIsMoving(isMoving: boolean) {
+    this.characterService.setIsMoving(isMoving);
+  }
 
-        return 'down';
-      case DirectionsEnum.LEFT:
-        // console.log(direction);
-
-        return 'left';
-      case DirectionsEnum.RIGHT:
-        // console.log(direction);
-
-        return 'right';
-      default:
-        return '';
-    }
+  setDirectionFromKeyboardKey(key: string): void {
+    this.characterService.setDirection(key as Direction);
   }
 }
