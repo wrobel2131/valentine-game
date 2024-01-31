@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
 import {
   Direction,
   DirectionClass,
@@ -27,7 +27,6 @@ export class WalkingCharacterComponent implements OnInit {
   characterPositionSubscription!: Subscription;
 
   private intervalId: any;
-  private timeoutId: any;
 
   constructor(private characterService: CharacterService) {}
 
@@ -43,6 +42,14 @@ export class WalkingCharacterComponent implements OnInit {
       this.characterService.characterPosition$.subscribe(
         (characterPosition) => (this.characterPositionValue = characterPosition)
       );
+  }
+
+  @HostBinding('class') get hostClasses() {
+    return `${this.directionClassValue} ${this.isMovingValue ? 'moving' : 'not-moving'}`;
+  }
+
+  @HostBinding('style') get hostStyles() {
+    return this.characterPositionValue;
   }
 
   @HostListener('document:keydown', ['$event'])

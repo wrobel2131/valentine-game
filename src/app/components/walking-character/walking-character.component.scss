@@ -1,14 +1,35 @@
-.boy {
+:host {
   display: block;
   position: absolute;
   top: 0;
   left: 0;
   height: 630px;
-  //   background: url(/assets/boy-walking-up-2.png);
   width: calc(2000px / 4);
-  //   -webkit-box-reflect: below 1px linear-gradient(transparent 90%, #0004);
-  //   animation: walkingBoy 1s steps(4) infinite;
+  // -webkit-box-reflect: below 1px linear-gradient(transparent 90%, #0004);
   scale: 0.2;
+  &.up {
+    background: url(/assets/boy-walking-up.png);
+  }
+
+  &.down {
+    background: url(/assets/boy-walking-down.png);
+  }
+
+  &.left {
+    background: url(/assets/boy-walking-left.png);
+  }
+
+  &.right {
+    background: url(/assets/boy-walking-right.png);
+  }
+
+  &.moving {
+    animation: walking 0.7s steps(4) infinite;
+  }
+
+  &.not-moving {
+    animation: none;
+  }
 }
 
 .up {
