@@ -13,7 +13,7 @@ import { CharacterPosition, NumberInPx } from '../models/position';
 })
 export class CharacterService {
   private directionClassSubject: BehaviorSubject<DirectionClass> =
-    new BehaviorSubject<DirectionClass>(DirectionsClassEnum.UP);
+    new BehaviorSubject<DirectionClass>(DirectionsClassEnum.RIGHT);
   public readonly directionClass$: Observable<DirectionClass> =
     this.directionClassSubject.asObservable();
 
@@ -23,7 +23,7 @@ export class CharacterService {
     this.isMovingSubject.asObservable();
 
   private characterPositionSubject: BehaviorSubject<CharacterPosition> =
-    new BehaviorSubject<CharacterPosition>({ top: '0px', left: '0px' });
+    new BehaviorSubject<CharacterPosition>({ top: '350px', left: '0px' });
   public readonly characterPosition$: Observable<CharacterPosition> =
     this.characterPositionSubject.asObservable();
 
