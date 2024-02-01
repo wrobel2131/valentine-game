@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
-import {
-  Direction,
-  DirectionClass,
-} from '../../models/directions';
+import { Direction, DirectionClass } from '../../models/directions';
 import { Subscription } from 'rxjs';
 import { CharacterPosition } from '../../models/position';
 import { CharacterService } from '../../services/character.service';
@@ -32,8 +29,12 @@ export class WalkingCharacterComponent implements OnInit {
   isInteractiveSubscription!: Subscription;
 
   private intervalId: any;
+  private isLetterOpened: boolean = false;
 
-  constructor(public characterService: CharacterService, public dialog: Dialog) {}
+  constructor(
+    public characterService: CharacterService,
+    public dialog: Dialog
+  ) {}
 
   ngOnInit(): void {
     this.directionClassSubscription =
@@ -48,11 +49,16 @@ export class WalkingCharacterComponent implements OnInit {
         (characterPosition) => (this.characterPositionValue = characterPosition)
       );
 
-      this.isInteractiveSubscription = this.characterService.isInteractive$.subscribe(isInteractive => this.isInteractiveValue = isInteractive);
+    this.isInteractiveSubscription =
+      this.characterService.isInteractive$.subscribe(
+        (isInteractive) => (this.isInteractiveValue = isInteractive)
+      );
   }
 
   @HostBinding('class') get hostClasses() {
-    return `${this.directionClassValue} ${this.isMovingValue ? 'moving' : 'not-moving'}`;
+    return `${this.directionClassValue} ${
+      this.isMovingValue ? 'moving' : 'not-moving'
+    }`;
   }
 
   @HostBinding('style') get hostStyles() {
@@ -62,12 +68,12 @@ export class WalkingCharacterComponent implements OnInit {
   @HostListener('document:keydown', ['$event'])
   handleKeyDownEvent(event: KeyboardEvent) {
     const keyboardKey = event.key;
-    if(keyboardKey === 'e' && this.isInteractiveValue) {
+    if (keyboardKey === 'e' && this.isInteractiveValue) {
       this.openEnvelopeDialog();
       this.characterService.setIsInteractive(false);
     }
 
-    if (this.isKeyboardKeyValid(keyboardKey)) {
+    if (this.isKeyboardKeyValid(keyboardKey) && !this.isLetterOpened) {
       if (!this.intervalId) {
         this.intervalId = setInterval(() => {
           this.setDirectionFromKeyboardKey(keyboardKey);
@@ -81,7 +87,6 @@ export class WalkingCharacterComponent implements OnInit {
   @HostListener('document:keyup', ['$event'])
   handleKeyUpEvent(event: KeyboardEvent) {
     const keyboardKey = event.key;
-    
 
     if (this.isKeyboardKeyValid(keyboardKey)) {
       clearInterval(this.intervalId);
@@ -92,7 +97,9 @@ export class WalkingCharacterComponent implements OnInit {
   }
 
   openEnvelopeDialog(): void {
-    this.dialog.open<string>(EnvelopeDialogComponent);
+    this.isLetterOpened = true;
+    const dialogRef = this.dialog.open<string>(EnvelopeDialogComponent);
+    dialogRef.closed.subscribe((event) => (this.isLetterOpened = false));
   }
 
   move(key: string): void {

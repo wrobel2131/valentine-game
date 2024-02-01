@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { DialogRef } from '@angular/cdk/dialog';
 import { EnvelopeComponent } from '../envelope/envelope.component';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-envelope-dialog',
@@ -10,9 +10,5 @@ import { EnvelopeComponent } from '../envelope/envelope.component';
   styleUrl: './envelope-dialog.component.scss',
 })
 export class EnvelopeDialogComponent {
-  constructor(public dialogRef: DialogRef<EnvelopeDialogComponent>) {}
-
-  closeDialog() {
-    this.dialogRef.close();
-  }
+  constructor(private dialogRef: DialogRef<EnvelopeDialogComponent>) {}
 }

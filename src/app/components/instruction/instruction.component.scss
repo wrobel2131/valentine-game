@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap");
+@use "typography";
 $pixel: 0.125rem;
 
 :host {
-  font-family: "Pixelify Sans", sans-serif;
+  font-family: typography.$pixel-font-family;
   position: absolute;
   top: 5%;
   left: 5%;

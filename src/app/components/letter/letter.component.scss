@@ -1,0 +1,72 @@
+@use "typography";
+
+:host {
+  height: 280px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.question {
+  color: red;
+  font-family: typography.$pixel-font-family;
+  font-size: 50px;
+}
+
+.pixel-box {
+  position: absolute;
+  top: 200px;
+  left: 80px;
+  width: 50px;
+  height: 50px;
+  display: block;
+  border: 1px solid black;
+  box-shadow: -4px 0 0 0 black, 4px 0 0 0 black, 0 -4px 0 0 black,
+    0 4px 0 0 black;
+}
+
+.pixel-box__inner-container {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 4px solid #e6e6e6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 5px;
+}
+
+.running-button {
+  position: absolute;
+  top: 200px;
+  left: 300px;
+  z-index: 10;
+}
+
+.pixel__text {
+  position: absolute;
+  top: 200px;
+  left: 50px;
+  font-family: typography.$pixel-font-family;
+  font-size: 40px;
+  transition: 0.2s;
+  margin: 0;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(2);
+    color: rgb(130, 0, 84);
+  }
+
+  &--running {
+    position: absolute;
+    margin: 0;
+    top: 200px;
+    left: 380px;
+    font-family: typography.$pixel-font-family;
+    font-size: 40px;
+  }
+}

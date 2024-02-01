@@ -1,11 +1,7 @@
 <div class="wrapper">
-  <div
-    class="envelope"
-    [ngClass]="isOpen == true ? 'open' : 'close'"
-    (click)="openEnvelope()"
-  >
-    <div class="front flap"></div>
-    <div class="front pocket"></div>
+  <div class="envelope" [ngClass]="isOpen == true ? 'open' : 'close'">
+    <div class="front flap" (click)="openEnvelope()"></div>
+    <div class="front pocket" (click)="openEnvelope()"></div>
     <div class="letter">
       <app-letter></app-letter>
     </div>

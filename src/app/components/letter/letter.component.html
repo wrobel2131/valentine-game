@@ -1,1 +1,13 @@
-<p>letter works!</p>
+<p class="question">WILL YOU BE MY VALENTINE?</p>
+
+<p class="pixel__text" (click)="sheAgreed()">Yes</p>
+
+<p
+  class="pixel__text--running"
+  [style.top.px]="top"
+  [style.left.px]="left"
+  #running
+  (mouseover)="moveElement($event)"
+>
+  No
+</p>
