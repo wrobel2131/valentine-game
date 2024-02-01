@@ -43,7 +43,10 @@ export class StandingCharacterComponent implements OnInit {
           this.distance = this.calculateDistance(secondCharacterPosition);
 
           if (this.distance < 50) {
-            this.openDialog('2000ms', '1500ms');
+            this.characterService.setIsInteractive(true);
+          } else {
+            this.characterService.setIsInteractive(false);
+
           }
         }
       );

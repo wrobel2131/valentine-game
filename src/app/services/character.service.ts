@@ -27,6 +27,9 @@ export class CharacterService {
   public readonly characterPosition$: Observable<CharacterPosition> =
     this.characterPositionSubject.asObservable();
 
+  public isInteractiveSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public readonly isInteractive$: Observable<boolean> = this.isInteractiveSubject.asObservable();
+
   private STEP_PX = 1;
 
   moveCharacter(direction: Direction): void {
@@ -45,6 +48,10 @@ export class CharacterService {
         this.moveCharacterRight(stepPx);
         break;
     }
+  }
+
+  setIsInteractive(isInteractive: boolean) {
+    this.isInteractiveSubject.next(isInteractive);
   }
 
   setDirection(direction: Direction): void {

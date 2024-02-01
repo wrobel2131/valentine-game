@@ -3,16 +3,16 @@ import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
 import {
   Direction,
   DirectionClass,
-  DirectionsEnum,
 } from '../../models/directions';
 import { Subscription } from 'rxjs';
 import { CharacterPosition } from '../../models/position';
 import { CharacterService } from '../../services/character.service';
+import { BubbleSpeechComponent } from '../bubble-speech/bubble-speech.component';
 
 @Component({
   selector: 'app-walking-character',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BubbleSpeechComponent],
   templateUrl: './walking-character.component.html',
   styleUrl: './walking-character.component.scss',
 })
@@ -26,9 +26,10 @@ export class WalkingCharacterComponent implements OnInit {
   characterPositionValue!: CharacterPosition;
   characterPositionSubscription!: Subscription;
 
+
   private intervalId: any;
 
-  constructor(private characterService: CharacterService) {}
+  constructor(public characterService: CharacterService) {}
 
   ngOnInit(): void {
     this.directionClassSubscription =
