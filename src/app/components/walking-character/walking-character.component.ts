@@ -8,11 +8,13 @@ import { Subscription } from 'rxjs';
 import { CharacterPosition } from '../../models/position';
 import { CharacterService } from '../../services/character.service';
 import { BubbleSpeechComponent } from '../bubble-speech/bubble-speech.component';
+import { EnvelopeDialogComponent } from '../envelope-dialog/envelope-dialog.component';
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-walking-character',
   standalone: true,
-  imports: [CommonModule, BubbleSpeechComponent],
+  imports: [CommonModule, BubbleSpeechComponent, DialogModule],
   templateUrl: './walking-character.component.html',
   styleUrl: './walking-character.component.scss',
 })
@@ -26,10 +28,12 @@ export class WalkingCharacterComponent implements OnInit {
   characterPositionValue!: CharacterPosition;
   characterPositionSubscription!: Subscription;
 
+  isInteractiveValue!: boolean;
+  isInteractiveSubscription!: Subscription;
 
   private intervalId: any;
 
-  constructor(public characterService: CharacterService) {}
+  constructor(public characterService: CharacterService, public dialog: Dialog) {}
 
   ngOnInit(): void {
     this.directionClassSubscription =
@@ -43,6 +47,8 @@ export class WalkingCharacterComponent implements OnInit {
       this.characterService.characterPosition$.subscribe(
         (characterPosition) => (this.characterPositionValue = characterPosition)
       );
+
+      this.isInteractiveSubscription = this.characterService.isInteractive$.subscribe(isInteractive => this.isInteractiveValue = isInteractive);
   }
 
   @HostBinding('class') get hostClasses() {
@@ -56,6 +62,10 @@ export class WalkingCharacterComponent implements OnInit {
   @HostListener('document:keydown', ['$event'])
   handleKeyDownEvent(event: KeyboardEvent) {
     const keyboardKey = event.key;
+    if(keyboardKey === 'e' && this.isInteractiveValue) {
+      this.openEnvelopeDialog();
+      this.characterService.setIsInteractive(false);
+    }
 
     if (this.isKeyboardKeyValid(keyboardKey)) {
       if (!this.intervalId) {
@@ -71,6 +81,7 @@ export class WalkingCharacterComponent implements OnInit {
   @HostListener('document:keyup', ['$event'])
   handleKeyUpEvent(event: KeyboardEvent) {
     const keyboardKey = event.key;
+    
 
     if (this.isKeyboardKeyValid(keyboardKey)) {
       clearInterval(this.intervalId);
@@ -78,6 +89,10 @@ export class WalkingCharacterComponent implements OnInit {
       this.setDirectionFromKeyboardKey(keyboardKey);
       this.setIsMoving(false);
     }
+  }
+
+  openEnvelopeDialog(): void {
+    this.dialog.open<string>(EnvelopeDialogComponent);
   }
 
   move(key: string): void {
