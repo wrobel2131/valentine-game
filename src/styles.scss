@@ -356,6 +356,9 @@ html,
 body {
   overflow: hidden;
 }
+html {
+  overflow-y: hidden !important;
+}
 // .mat-dialog-content {
 //   max-height: 100% !important;
 // }

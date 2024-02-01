@@ -23,7 +23,7 @@ export class CharacterService {
     this.isMovingSubject.asObservable();
 
   private characterPositionSubject: BehaviorSubject<CharacterPosition> =
-    new BehaviorSubject<CharacterPosition>({ top: '600px', left: '670px' });
+    new BehaviorSubject<CharacterPosition>({ top: '650px', left: '750px' });
   public readonly characterPosition$: Observable<CharacterPosition> =
     this.characterPositionSubject.asObservable();
 
