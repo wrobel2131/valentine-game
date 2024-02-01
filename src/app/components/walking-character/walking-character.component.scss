@@ -1,3 +1,5 @@
+@use "typography";
+
 :host {
   display: block;
   position: absolute;
@@ -65,7 +67,13 @@
   }
 }
 
-p {
+.name {
   font-size: 200px;
-  margin: 100px;
+  font-weight: 900;
+  color: #fff;
+  position: absolute;
+  top: -200px;
+  left: -100px;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: black;
 }

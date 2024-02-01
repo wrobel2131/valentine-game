@@ -27,8 +27,20 @@ export class CharacterService {
   public readonly characterPosition$: Observable<CharacterPosition> =
     this.characterPositionSubject.asObservable();
 
-  public isInteractiveSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public readonly isInteractive$: Observable<boolean> = this.isInteractiveSubject.asObservable();
+  private isInteractiveSubject: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
+  public readonly isInteractive$: Observable<boolean> =
+    this.isInteractiveSubject.asObservable();
+
+  private firstPlayerNameSubject: BehaviorSubject<string> =
+    new BehaviorSubject<string>('Dawidek');
+  public readonly firstPlayerName$: Observable<string> =
+    this.firstPlayerNameSubject.asObservable();
+
+  private secondPlayerNameSubject: BehaviorSubject<string> =
+    new BehaviorSubject<string>('Alenka');
+  public readonly secondPlayerName$: Observable<string> =
+    this.secondPlayerNameSubject.asObservable();
 
   private STEP_PX = 1;
 

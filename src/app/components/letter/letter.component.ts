@@ -1,6 +1,5 @@
 import { DialogModule, DialogRef } from '@angular/cdk/dialog';
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { EnvelopeDialogComponent } from '../envelope-dialog/envelope-dialog.component';
 
 @Component({
@@ -27,7 +26,6 @@ export class LetterComponent {
   }
 
   sheAgreed() {
-    console.log('close');
     this.dialogRef.close();
   }
 
