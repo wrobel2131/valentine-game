@@ -3,11 +3,14 @@ import { CharacterService } from '../../services/character.service';
 import { CommonModule } from '@angular/common';
 import { CharacterPosition, NumberInPx } from '../../models/position';
 import { Subscription } from 'rxjs';
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { EnvelopeDialogComponent } from '../envelope-dialog/envelope-dialog.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-standing-character',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DialogModule],
   templateUrl: './standing-character.component.html',
   styleUrl: './standing-character.component.scss',
 })
@@ -22,11 +25,15 @@ export class StandingCharacterComponent implements OnInit {
   }
 
   distance!: number;
+  isDialogOpened = false;
 
   secondCharacterPositionValue!: CharacterPosition;
   secondCharacterPositionSubscription!: Subscription;
 
-  constructor(public characterService: CharacterService) {}
+  constructor(
+    public characterService: CharacterService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.secondCharacterPositionSubscription =
@@ -34,8 +41,21 @@ export class StandingCharacterComponent implements OnInit {
         (secondCharacterPosition) => {
           this.secondCharacterPositionValue = secondCharacterPosition;
           this.distance = this.calculateDistance(secondCharacterPosition);
+
+          if (this.distance < 50) {
+            this.openDialog('2000ms', '1500ms');
+          }
         }
       );
+  }
+  openDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string
+  ): void {
+    this.dialog.open(EnvelopeDialogComponent, {
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 
   calculateDistance(secondCharacterPosition: CharacterPosition): number {

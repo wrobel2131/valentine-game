@@ -350,7 +350,21 @@ template {
 [hidden] {
   display: none;
 }
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 
+html,
 body {
   overflow: hidden;
+}
+// .mat-dialog-content {
+//   max-height: 100% !important;
+// }
+
+// html,
+// body {
+//   height: 100%;
+// }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
