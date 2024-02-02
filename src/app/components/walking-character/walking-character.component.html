@@ -1,6 +1,6 @@
 @if (isInteractiveValue) {
 <app-bubble-speech></app-bubble-speech>
-} @if(characterService.firstPlayerName$ | async; as name) {
+} @if(characterService.firstCharacterName$ | async; as name) {
 <span class="name">{{ name }}</span>
 
 }

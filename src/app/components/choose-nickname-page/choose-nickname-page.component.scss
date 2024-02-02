@@ -1,0 +1,103 @@
+@use "typography";
+
+:host {
+  background-color: rgb(237, 237, 237);
+  display: flex;
+  font-family: typography.$pixel-font-family;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 90px;
+}
+
+.characters {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+.name {
+  font-size: 50px;
+  margin: 0;
+}
+
+.character {
+  display: block;
+  width: 300px;
+  height: 400px;
+  transition: 0.1s;
+  cursor: pointer;
+  &:hover {
+    scale: 1.1;
+  }
+
+  &--player1 {
+    background: url(/assets/boy-walking-down.png);
+    background-size: cover;
+  }
+
+  &--player2 {
+    background: url(/assets/girl.png);
+    background-size: cover;
+  }
+}
+
+.grass {
+  display: block;
+  width: 100%;
+  height: 300px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: url(/assets/grass.png);
+  animation: animatedBackground 30s linear infinite;
+}
+
+.play-button {
+  font-family: typography.$pixel-font-family;
+
+  width: 200px;
+  height: 100px;
+
+  background-color: #ffffff;
+  display: block;
+  border: 1px solid black;
+  box-shadow: -4px 0 0 0 black, 4px 0 0 0 black, 0 -4px 0 0 black,
+    0 4px 0 0 black;
+
+  transition: 0.1s;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000000;
+
+  &:hover {
+    scale: 1.1;
+  }
+}
+
+.inner-container {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 4px solid #e6e6e6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 5px;
+  font-size: 40px;
+}
+
+@keyframes animatedBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 3000px 0;
+  }
+}
