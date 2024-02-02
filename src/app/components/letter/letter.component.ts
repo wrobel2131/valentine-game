@@ -89,7 +89,7 @@ export class LetterComponent {
       fireworks.stop();
     }, 20000);
     this.dialog.open(ThanksDialogComponent, {
-      autoFocus: false,
+      autoFocus: 'first-header',
     });
   }
 

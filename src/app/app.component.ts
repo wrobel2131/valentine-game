@@ -10,15 +10,7 @@ import { NgFireworksModule } from '@fireworks-js/angular';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    EnvelopeComponent,
-    WalkingCharacterComponent,
-    StandingCharacterComponent,
-    InstructionComponent,
-    NgFireworksModule,
-  ],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

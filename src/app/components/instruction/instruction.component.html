@@ -1,7 +1,12 @@
 <div class="inner-container">
   <div class="text">
     <h3>Instructions</h3>
-    <p>- Forward the letter to Alenka</p>
+    <p>
+      - Forward the letter to @if (characterService.secondCharacterName$ |
+      async; as name) {
+      <span>{{ name }}</span>
+      }
+    </p>
     <p>Move using arrow keys</p>
   </div>
 

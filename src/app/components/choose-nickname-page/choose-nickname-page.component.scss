@@ -8,7 +8,7 @@
   align-items: center;
   overflow: hidden;
   text-align: center;
-  height: 100%;
+  height: 100vh;
 }
 
 h1 {
@@ -18,28 +18,32 @@ h1 {
 .characters {
   display: flex;
   width: 100%;
-  height: 100px;
   justify-content: space-around;
+  align-items: center;
+}
+.name {
+  font-size: 50px;
+  margin: 0;
+}
 
-  &__character {
-    display: block;
-    width: 300px;
-    height: 400px;
-    transition: 0.1s;
-    cursor: pointer;
-    &:hover {
-      scale: 1.1;
-    }
+.character {
+  display: block;
+  width: 300px;
+  height: 400px;
+  transition: 0.1s;
+  cursor: pointer;
+  &:hover {
+    scale: 1.1;
+  }
 
-    &--player1 {
-      background: url(/assets/boy-walking-down.png);
-      background-size: cover;
-    }
+  &--player1 {
+    background: url(/assets/boy-walking-down.png);
+    background-size: cover;
+  }
 
-    &--player2 {
-      background: url(/assets/girl.png);
-      background-size: cover;
-    }
+  &--player2 {
+    background: url(/assets/girl.png);
+    background-size: cover;
   }
 }
 
@@ -59,6 +63,7 @@ h1 {
 
   width: 200px;
   height: 100px;
+
   background-color: #ffffff;
   display: block;
   border: 1px solid black;
@@ -67,6 +72,8 @@ h1 {
 
   transition: 0.1s;
   cursor: pointer;
+  text-decoration: none;
+  color: #000000;
 
   &:hover {
     scale: 1.1;

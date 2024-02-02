@@ -1,15 +1,31 @@
-<h1>Choose character names</h1>
+<h1>Choose characters names</h1>
 <div class="characters">
-  <div
-    class="characters__character characters__character--player1"
-    (click)="setFirstCharacterNickname()"
-  ></div>
-  <div
-    class="characters__character characters__character--player2"
-    (click)="setSecondCharacterNickname()"
-  ></div>
+  <div class="character__wrapper">
+    @if (this.characterService.firstCharacterName$ | async; as
+    firstCharacterName) {
+    <p class="name">{{ firstCharacterName }}</p>
+    }
+
+    <div
+      class="character character--player1"
+      (click)="setFirstCharacterNickname()"
+    ></div>
+  </div>
+  <a class="play-button" [routerLink]="'game'">
+    <div class="inner-container">Play</div>
+  </a>
+
+  <div class="character__wrapper">
+    @if (this.characterService.secondCharacterName$ | async; as
+    secondCharacterName) {
+    <p class="name">{{ secondCharacterName }}</p>
+    }
+
+    <div
+      class="character character--player2"
+      (click)="setSecondCharacterNickname()"
+    ></div>
+  </div>
 </div>
+
 <div class="grass"></div>
-<a class="play-button">
-  <div class="inner-container">Play</div>
-</a>

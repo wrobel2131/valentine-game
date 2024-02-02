@@ -32,17 +32,25 @@ export class CharacterService {
   public readonly isInteractive$: Observable<boolean> =
     this.isInteractiveSubject.asObservable();
 
-  private firstPlayerNameSubject: BehaviorSubject<string> =
-    new BehaviorSubject<string>('Dawidek');
-  public readonly firstPlayerName$: Observable<string> =
-    this.firstPlayerNameSubject.asObservable();
+  private firstCharacterNameSubject: BehaviorSubject<string> =
+    new BehaviorSubject<string>('You');
+  public readonly firstCharacterName$: Observable<string> =
+    this.firstCharacterNameSubject.asObservable();
 
-  private secondPlayerNameSubject: BehaviorSubject<string> =
-    new BehaviorSubject<string>('Alenka');
-  public readonly secondPlayerName$: Observable<string> =
-    this.secondPlayerNameSubject.asObservable();
+  private secondCharacterNameSubject: BehaviorSubject<string> =
+    new BehaviorSubject<string>('Your love');
+  public readonly secondCharacterName$: Observable<string> =
+    this.secondCharacterNameSubject.asObservable();
 
   private STEP_PX = 1;
+
+  setFirstCharacterName(name: string) {
+    this.firstCharacterNameSubject.next(name);
+  }
+
+  setSecondCharacterName(name: string) {
+    this.secondCharacterNameSubject.next(name);
+  }
 
   moveCharacter(direction: Direction): void {
     const stepPx = this.STEP_PX;

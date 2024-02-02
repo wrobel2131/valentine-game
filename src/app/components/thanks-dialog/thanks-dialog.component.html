@@ -1,4 +1,8 @@
 <div class="inner-container">
-  <p class="text">Dziekuje Alenko</p>
+  <p class="text">
+    Dziekuje @if (characterService.secondCharacterName$ | async; as name) {
+    <span>{{ name }}</span>
+    }
+  </p>
   <p class="text text--red">Kocham Cie!!!</p>
 </div>
