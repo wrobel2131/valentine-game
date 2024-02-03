@@ -1,27 +1,103 @@
-# ValentinesGame
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
 
-## Development server
+#  Valentines Game
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+  
 
-## Code scaffolding
+> A game that will help you ask every girl to be your valentine.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  
 
-## Build
+##  Table of Contents
+-  [General Information](#general-information)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+-  [Technologies Used](#technologies-used)
 
-## Running unit tests
+-  [Screenshots](#screenshots)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+-  [Setup](#setup)
 
-## Running end-to-end tests
+-  [Project Status](#project-status)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+-  [Contact](#contact)
 
-## Further help
+  
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+##  General Information
+
+  
+
+Just a fun game to ask your significant other to be your valentine.
+
+  
+
+##  Technologies Used
+
+  
+
+-  Angular - 17
+
+-  Material Angular - 17.1.2
+
+-  firework.js/angular - 2.10.7
+
+  
+
+##  Screenshots
+
+  
+
+![select-names-page](https://raw.githubusercontent.com/wrobel2131/valentines-game/main/screenshots/select-names-page.png)
+![playground](https://raw.githubusercontent.com/wrobel2131/valentines-game/main/screenshots/playground.png)
+![letterpage](https://raw.githubusercontent.com/wrobel2131/valentines-game/main/screenshots/letter.png)
+
+
+
+  
+  
+
+##  Setup
+
+  
+
+To install required dependencies, go to project folder and run
+
+  
+
+```
+
+npm install
+
+```
+
+  
+
+If an error appears during installation regarding project dependencies, run:
+
+  
+
+```
+
+npm install --legacy-peer-deps
+
+```
+
+  
+
+This is due to the library responsible for fireworks being outdated,
+
+  
+
+##  Project Status
+
+  
+
+Project is: _in progress_.
+
+  
+
+##  Contact
+
+  
+
+Created by [@wrobel2131](https://www.linkedin.com/in/wrobeldawid/) - feel free to contact me!
