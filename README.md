@@ -86,6 +86,25 @@ npm install --legacy-peer-deps
 
 This is due to the library responsible for fireworks being outdated,
 
+To start an app, run:
+
+```
+
+ng serve
+
+```
+and go to to __http://localhost:4200__
+
+or
+
+```
+
+ng serve --open
+
+
+```
+and it will automatically open in browser window.
+
   
 
 ##  Project Status
