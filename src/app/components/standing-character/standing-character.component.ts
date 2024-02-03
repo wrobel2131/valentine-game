@@ -1,11 +1,11 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { CharacterService } from '../../services/character.service';
 import { CommonModule } from '@angular/common';
-import { CharacterPosition, NumberInPx } from '../../models/position';
+import { CharacterPosition } from '../../models/position';
 import { Subscription } from 'rxjs';
-import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { DialogModule } from '@angular/cdk/dialog';
 import { EnvelopeDialogComponent } from '../envelope-dialog/envelope-dialog.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-standing-character',
