@@ -4,14 +4,14 @@
 
   
 
-> A game that will help you ask every girl to be your valentine.
+> Valentines Game is an engaging and interactive web-based game designed to add fun twist to asking someone to be your valentine. This application brings a blend of simplicity and enjoyment to a special occasion.
 
   
 
 ##  Table of Contents
 -  [General Information](#general-information)
 
--  [Technologies Used](#technologies-used)
+-  [Technology Stack](#technology-stack)
 
 -  [Screenshots](#screenshots)
 
@@ -31,7 +31,7 @@ Just a fun game to ask your significant other to be your valentine.
 
   
 
-##  Technologies Used
+##  Technology Stack
 
   
 
@@ -60,9 +60,10 @@ Just a fun game to ask your significant other to be your valentine.
 
   
 
-To install required dependencies, go to project folder and run
-
-  
+To get started with Valentines Game:
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Install the dependencies:
 
 ```
 
@@ -70,9 +71,7 @@ npm install
 
 ```
 
-  
-
-If an error appears during installation regarding project dependencies, run:
+3. If you encounter any dependency-related issues, try
 
   
 
@@ -82,28 +81,15 @@ npm install --legacy-peer-deps
 
 ```
 
-  
-
-This is due to the library responsible for fireworks being outdated,
-
-To start an app, run:
+4. Launch the application
 
 ```
 
 ng serve
 
 ```
-and go to to __http://localhost:4200__
+5. Visit __http://localhost:4200__ in your web browser to view the app.
 
-or
-
-```
-
-ng serve --open
-
-
-```
-and it will automatically open in browser window.
 
   
 
