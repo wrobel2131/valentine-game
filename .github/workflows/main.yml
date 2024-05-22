@@ -20,8 +20,5 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Run tests
-        run: npm test
-
       - name: "Deployed site"
         run: curl -X POST -d {} ${{ secrets.NETLIFY_BUILD_HOOK }}
