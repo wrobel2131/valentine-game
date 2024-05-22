@@ -2,9 +2,9 @@ name: Hello world pipeline
 
 on:
   push:
-    branches: ["dev"]
+    branches: ["main", "dev"]
   pull_request:
-    branches: ["dev"]
+    branches: ["main", dev"]
 
 jobs:
   build:
@@ -17,6 +17,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Install dependencies
+        run: npm install
 
-      - name: Say Hello world pipeline
-        run: echo "Hello world pipeline"
+      - name: Run tests
+        run: npm test
+
+      - name: "Deployed site"
+        run: curl -X POST -d {} ${{ secrets.NETLIFY_BUILD_HOOK }}
