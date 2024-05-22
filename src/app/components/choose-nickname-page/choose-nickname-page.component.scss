@@ -1,7 +1,8 @@
 @use "typography";
 
 :host {
-  background-color: rgb(237, 237, 237);
+  // background-color: rgb(237, 237, 237);
+  background-color: aquamarine;
   display: flex;
   font-family: typography.$pixel-font-family;
   flex-direction: column;
