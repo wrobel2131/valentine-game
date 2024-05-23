@@ -1,0 +1,28 @@
+name: Deploy to Firebase Hosting on PR
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+permissions:
+  checks: write
+  contents: read
+  pull-requests: write
+jobs:
+  build_and_preview:
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+      - name: Build the project
+        run: npm run build
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_VALENTINES_GAME }}
+          projectId: valentines-game
+          expires: 7d # Optional: Set the preview channel to expire after 7 days
